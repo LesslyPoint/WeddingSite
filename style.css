@@ -1,4 +1,8 @@
 /* General Styles */
+html{
+  scroll-snap-type: y mandatory;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -14,54 +18,80 @@ header, footer {
 }
 
 main {
-  margin: 0 5% 0 5%;
+  margin: 0;
 }
 
-h1, h2 {
+h1, h2, h3, h4 {
   text-align: center;
+  max-width: 90%;
 }
 
+.Page{
+  scroll-snap-align: start;
+}
 
 .Unit {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #aaa;
+  border-radius: 5vh;
 }
 
 .Vert {
-  flex-direction: column;
-}
-
-#LandingImg {
-  width: 95vh;
-  aspect-ratio: 1;
-
   display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  background: #bbb;
+  flex-direction: column;
 }
 
 .Titles {
   flex: 1;
   display: flex;
   flex-direction: column;
-  
   justify-content: center;
   align-items: center;
-  padding: 5vh 5vw 5vh 5vw;
 }
 
+.Green{
+  background-color: rgb(5, 56, 25);
+}
+
+.Gold{
+  background: #FFFF00;
+  background: linear-gradient(45deg, rgba(255, 255, 0, 1) 0%, rgba(255, 200, 0, 1) 50%, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 0, 1) 100%);
+}
+
+.White{
+  background-color: #fff;
+}
+
+.Black{
+  background-color: #000;
+}
+
+
+#Info {
+  display: flex;
+}
+
+
 /* Stack items when screen is too narrow */
-@media (max-width: 800px) {
+@media (max-width: 1440px) {
   #Welcome {
     flex-direction: column;
   }
 
   #Titles {
-    width: 100%; /* Optional: make it full width when stacked */
+    width: 100%;
+  }
+
+  #LandingImg {
+    width: 100vw;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #bbb;
   }
 
   #Info {
@@ -71,36 +101,131 @@ h1, h2 {
   #ScrollBanner {
     width: 100vw;
     height: 300px;
-    background: #999;
+    background: #515;
+  }
+
+  #Calendar{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #CountDown{
+    background-color: #555;
+    display: flex;
+    width: 50vw;
+    height: 25vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  #Calendar img{
+    background-color: #550;
+    min-width: 50vw;
+    min-height: 25vh;
+  }
+
+  #Explanation{
+    width: 100vw;
+    height: 12.5vh;
+  }
+
+  #Map {
+    width: 50vw;
+    height: 25vh;
+  }
+
+  #Colours p{
+    height: 12.5vh;
+    width: 25vw;
+    border-radius: 6.25vw;
   }
 }
 
-@media (min-width: 801px) {
-  #ScrollBanner {
-    min-width: 250px;
-    background: #888;
-  }
 
-  #Info {
+
+@media (min-width: 1441px) {
+  .WidescreenVert {
     flex-direction: row-reverse;
+    width: 25vw;
+  }
+
+  #ScrollBanner {
+    width: 25vw;
+    height: 100vh;
+    background: #151;
+  }
+
+  #LandingImg {
+    width: 100vh;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: #bbb;
+  }
+  
+  #Info {
+    flex-direction: row;
+  }
+  #Map {
+    width: 25vw;
+    height: 50vh;
+  }
+
+  #Location{
+    width: 50vw;
+    height: 50vh;
+  }
+
+  #CountDown{
+    background-color: #555;
+    display: flex;
+    width: 25vw;
+    height: 50vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  #Calendar img{
+    background-color: #550;
+    min-width: 25vw;
+    min-height: 50vh;
+  }
+
+  #Explanation{
+    width: 50vw;
+    height: 25vh;
+  }
+
+  #Colours{
+    height: 25vh;
+    width: 50vw;
+  }
+
+  #Colours p{
+    height: 25vh;
+    width: 12.5vw;
+    border-radius: 3.125vw;
   }
 }
+
 
 #Map {
-  max-width: 500px;
-  min-width: 200px; 
-  aspect-ratio: 1;
-  flex: 1;
-
   justify-content: center;
   align-items: center;
   
   background: #bbb;
 }
 
+
+
+
+
 #Spotify {
-  max-width: 500px;
-  min-width: 200px; 
+  width: 25vw;
   aspect-ratio: 1;
   flex: 1;
 
