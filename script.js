@@ -28,45 +28,29 @@ var x = setInterval(function() {
 }, 1000);
 
 
-document.getElementById('Form').addEventListener('submit', async function (e) {
-  e.preventDefault();
+const url = new URL(window.location.href);
 
-  const photoInput = document.getElementById('photo');
-  const file = photoInput.files[0];
+document.getElementById('rsvpForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const obj = {};
+      data.forEach((value, key) => obj[key] = value);
 
-  if (!file) {
-    alert("Please upload a photo.");
-    return;
-  }
+      const status = document.getElementById('status');
+      status.textContent = "Submitting...";
 
-  const reader = new FileReader();
-
-  reader.onloadend = function () {
-    const base64Image = reader.result; // data URL format
-
-    const data = {
-      name: document.getElementById('name').value,
-      game: document.getElementById('game').value,
-      language: document.getElementById('language').value,
-      diet: document.querySelector('input[name="diet"]:checked').value,
-      foodNeeds: document.getElementById('food-needs').value,
-      imageData: base64Image
-    };
-
-    fetch("YOUR_SCRIPT_URL", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzCRVqmJn4Yw0YynTgj0ebqOeDMA6xeYs4ngPLWjjYPY8k0_Al7PATVXk__C_2bsDg5Zg/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(obj),
+        });
+        status.textContent = "Submitted successfully!";
+        form.reset();
+      } catch (err) {
+        status.textContent = "Submission failed.";
+        console.error(err);
+      }
     });
-
-    document.getElementById('output').innerHTML = "<p>Submitted! Check your Google Sheet and Drive.</p>";
-    document.getElementById('Form').reset();
-  };
-
-  reader.readAsDataURL(file); // read image as base64 data URL
-});
-
-//https://script.google.com/macros/s/AKfycbzCRVqmJn4Yw0YynTgj0ebqOeDMA6xeYs4ngPLWjjYPY8k0_Al7PATVXk__C_2bsDg5Zg/exec

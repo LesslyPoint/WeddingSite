@@ -72,51 +72,39 @@
       </div>
     </div>
 
-    <div class="form-container Page">
-    <form id="Form">
-      <label for="photo">Photo:</label>
-      <input type="file" id="photo" name="photo" accept="image/*" required />
+    <form id="rsvpForm" class="Page">
+    <label>Name</label>
+    <input type="text" name="name" required />
 
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+    <label>Name of Plus One</label>
+    <input type="text" name="plusOne" />
 
-      <label for="game">Game Recommendation:</label>
-      <input type="text" id="game" name="game" />
+    <label>Card ID</label>
+    <input type="text" name="cardId" required />
 
-      <label for="language">Preferred Language:</label>
-      <select id="language" name="language">
-        <option value="english">English</option>
-        <option value="spanish">Spanish</option>
-        <option value="german">German</option>
-        <option value="french">French</option>
-        <option value="other">Other</option>
-      </select>
+    <label>Game Recommendation</label>
+    <input type="text" name="game" />
 
-      <label>Dietary Preference:</label>
-      <div class="radio-group">
-        <label><input type="radio" name="diet" value="vegetarian" /> Vegetarian</label>
-        <label><input type="radio" name="diet" value="vegan" /> Vegan</label>
-        <label><input type="radio" name="diet" value="none" /> None</label>
-      </div>
+    <label>Song Choice</label>
+    <input type="text" name="song" />
 
-      <label for="food-needs">Food Needs (Allergies, restrictions, etc.):</label>
-      <textarea id="food-needs" name="food-needs" rows="4"></textarea>
+    <label>Food Preferences (Allergies, Vegan/Vegetarian)</label>
+    <textarea name="food"></textarea>
 
-      <button type="submit">Submit</button>
-    </form>
-    <div id="output"></div>
-  </div>
+    <label>Preferred Language</label>
+    <select name="language" required>
+      <option value="">Select Language</option>
+      <option>English</option>
+      <option>Spanish</option>
+      <option>German</option>
+      <option>French</option>
+      <option>Other</option>
+    </select>
 
-    <div id="Song" class="Unit Page">
+    <button type="submit">Submit</button>
+  </form>
 
-      <div class="Titles">
-        <h3>All song and Dance</h3>
-        <h4>Songs decorate our hearts, so please! Get us the housewarming gift of music.</h4>
-        <a href="">Link to Spotify Playlist</a>
-      </div>
-
-      <div id="Spotify"></div>
-    </div>
+  <p id="status"></p>
   </main>
 
   <footer>
