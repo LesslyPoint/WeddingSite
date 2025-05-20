@@ -28,20 +28,45 @@ var x = setInterval(function() {
 }, 1000);
 
 
-document.getElementById('Form').addEventListener('submit', function (e) {
-      e.preventDefault();
+document.getElementById('Form').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-      const form = document.getElementById('Form');
-      const formData = new FormData(form);
+  const photoInput = document.getElementById('photo');
+  const file = photoInput.files[0];
 
-      fetch("https://script.google.com/macros/s/AKfycbzCRVqmJn4Yw0YynTgj0ebqOeDMA6xeYs4ngPLWjjYPY8k0_Al7PATVXk__C_2bsDg5Zg/exec", {
-        method: "POST",
-        mode: "no-cors",  // Required for Apps Script
-        body: formData
-      });
+  if (!file) {
+    alert("Please upload a photo.");
+    return;
+  }
 
-      document.getElementById('output').innerHTML = "<p>Submission sent!</p>";
-      form.reset();
+  const reader = new FileReader();
+
+  reader.onloadend = function () {
+    const base64Image = reader.result; // data URL format
+
+    const data = {
+      name: document.getElementById('name').value,
+      game: document.getElementById('game').value,
+      language: document.getElementById('language').value,
+      diet: document.querySelector('input[name="diet"]:checked').value,
+      foodNeeds: document.getElementById('food-needs').value,
+      imageData: base64Image
+    };
+
+    fetch("YOUR_SCRIPT_URL", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
     });
+
+    document.getElementById('output').innerHTML = "<p>Submitted! Check your Google Sheet and Drive.</p>";
+    document.getElementById('Form').reset();
+  };
+
+  reader.readAsDataURL(file); // read image as base64 data URL
+});
 
 //https://script.google.com/macros/s/AKfycbzCRVqmJn4Yw0YynTgj0ebqOeDMA6xeYs4ngPLWjjYPY8k0_Al7PATVXk__C_2bsDg5Zg/exec
